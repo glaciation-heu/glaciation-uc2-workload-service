@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   server:
   - apiVersion: v2
+    appVersion: 0.1.0-dev.2.main.46b9f2c9
+    created: "2024-07-16T14:30:04.171468523Z"
+    description: Web server
+    digest: ca8955ba7fa536fc6365337f68a3a9768d250c99d1e97ab91c3d142db846b778
+    name: server
+    type: application
+    urls:
+    - https://glaciation-heu.github.io/glaciation-uc2-workload-service/helm-charts/server-0.1.0-dev.2.main.46b9f2c9.tgz
+    version: 0.1.0-dev.2.main.46b9f2c9
+  - apiVersion: v2
     appVersion: 0.1.0-dev.1.main.69b1a676
     created: "2024-07-16T14:29:54.491153631Z"
     description: Web server
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://glaciation-heu.github.io/glaciation-uc2-workload-service/helm-charts/server-0.1.0-dev.1.main.69b1a676.tgz
     version: 0.1.0-dev.1.main.69b1a676
-generated: "2024-07-16T14:29:54.49028201Z"
+generated: "2024-07-16T14:30:04.170232842Z"
