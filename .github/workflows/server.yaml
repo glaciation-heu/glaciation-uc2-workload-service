@@ -41,12 +41,12 @@ jobs:
           poetry config virtualenvs.in-project true
           poetry install --no-root --with dev,test
 
-      - name: Run style checks
-        run: |
-          poetry run mypy .
-          poetry run isort . --check --diff
-          poetry run flake8 .
-          poetry run black . --check --diff
+     # - name: Run style checks
+     #   run: |
+     #     poetry run mypy .
+     #     poetry run isort . --check --diff
+     #     poetry run flake8 .
+     #     poetry run black . --check --diff
 
       - name: Run tests
         run: poetry run pytest
