@@ -1,14 +1,8 @@
-FROM python:3.12-slim
-
-WORKDIR /code
-
-COPY poetry.lock pyproject.toml ./
-
-RUN pip install --no-cache-dir poetry \
-    && poetry config virtualenvs.create false \
-    && poetry install --no-root --without dev,test \
-    && rm -rf $(poetry config cache-dir)/{cache,artifacts}
-
-COPY ./app /code/app
-
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+FROM python:3.11-alpine
+WORKDIR /app
+COPY ./workload /app
+RUN mkdir -p /home/ubuntu/UC/data
+RUN apk update
+RUN apk add linux-headers make automake gcc g++ subversion python3-dev
+RUN pip install -r requirements.txt
+CMD ["python", "./workload.py", "-t", "-r", "1000000"]
