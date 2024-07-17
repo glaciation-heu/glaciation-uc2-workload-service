@@ -6,9 +6,6 @@ metadata:
     {{- include "app.labels" . | nindent 4 }}
 spec:
   schedule: "* * * * *"
-  selector:
-    matchLabels:
-      {{- include "app.selectorLabels" . | nindent 6 }}
   jobTemplate:
     spec:
       template:
