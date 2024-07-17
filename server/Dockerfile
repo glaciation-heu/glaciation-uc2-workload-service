@@ -1,4 +1,4 @@
-FROM python:3.11-alpine
+FROM python:3.9-alpine3.19
 WORKDIR /app
 COPY ./workload /app
 RUN mkdir -p /home/ubuntu/UC/data
