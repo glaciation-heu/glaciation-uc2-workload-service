@@ -30,6 +30,7 @@ resources:
   requests:
     memory: "2Gi"
     cpu: "2"
+    ephemeral-storage: "500M"
 
 livenessProbe:
   httpGet:
