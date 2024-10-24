@@ -2,4 +2,5 @@ sparqlwrapper == 2.0.0
 numpy == 1.19.5
 opencv-python == 4.9.0.80
 PyLD == 2.0.4
-requests
+requests == 2.31.0
+matplotlib == 3.8.0
