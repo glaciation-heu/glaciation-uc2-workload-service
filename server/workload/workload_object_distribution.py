@@ -136,9 +136,12 @@ def main():
         # Step 4: Generate insights and print the results
         generate_insights(object_frequency, zone_distribution, high_priority_objects)
 
-    visualize(object_frequency)
-    for zone, stats in zone_distribution.items():
-        visualize(stats, f'Object distribution for zone: {zone}')
+        visualize(object_frequency)
+        for zone, stats in zone_distribution.items():
+            visualize(stats, f'Object distribution for zone: {zone}')
+    else:
+        print('No response from metadata service')
+
     print(f'{time.perf_counter()-start_time}s elapsed')
 
 
