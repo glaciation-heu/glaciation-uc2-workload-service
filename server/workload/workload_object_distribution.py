@@ -37,7 +37,7 @@ def construct_sparql_query():
             ?m saref:hasValue ?v .
             }
         } 
-    } LIMIT 10
+    } 
     """
     return sparql_query
 
