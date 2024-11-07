@@ -3,8 +3,12 @@ import os
 import argparse
 import requests
 import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 
 from collections import defaultdict
+from pprint import pprint
+from metadata import coco_labels
 
 
 # Define function to parse command-line arguments
@@ -32,9 +36,12 @@ def construct_sparql_query():
             {
             ?s saref:hasIdentifier ?robotId .
             ?s glc:hasSubResource ?yolo .
-            ?yolo glc:makesMeasurement ?m .
-            ?m saref:relatesToProperty glc:name .
-            ?m saref:hasValue ?v .
+            ?yolo glc:makesMeasurement ?label .
+            ?label saref:relatesToProperty glc:name .
+            ?label saref:hasValue ?v .
+            ?yolo glc:makesMeasurement ?conf .
+            ?conf saref:relatesToProperty glc:confidence .
+            ?conf saref:hasValue ?confVal .
             }
         } 
     } 
@@ -55,14 +62,17 @@ def submit_sparql_query(sparql_query, metadata_service_url):
 
 # Step 3: Process the response data to calculate frequency and distribution
 def process_response(data):
+    det_confidence = defaultdict(lambda: pd.DataFrame(columns=coco_labels))
     object_frequency = defaultdict(int)
     zone_distribution = defaultdict(lambda: defaultdict(int))
     high_priority_objects = ["person", "chair"]
 
     for result in data.get("results", {}).get("bindings", []):
+        timestamp = result.get("g", {}).get("value")
         obj = result.get("v", {}).get("value")
         zone = result.get("robotId", {}).get("value")#.split('/')[-1]
-        print(f'Zone: {zone}')
+        confi = result.get("confVal", {}).get("value")
+        print(f'Zone: {zone}, timestamp: {timestamp}, confi: {confi}')
 
         if obj and zone:
             # Count the total occurrences of each object
@@ -71,7 +81,19 @@ def process_response(data):
             # Count the occurrences of objects in specific zones
             zone_distribution[zone][obj] += 1
 
-    return object_frequency, zone_distribution, high_priority_objects
+            # Update confidence dataframe
+            if obj in coco_labels:
+                if timestamp not in det_confidence[zone].index:
+                    row = [0.0] * len(coco_labels)
+                    row[coco_labels.index(obj)] = float(confi)
+                    new_row_df = pd.DataFrame([row], columns=coco_labels, index=[timestamp])
+                    det_confidence[zone] = pd.concat([det_confidence[zone], new_row_df])
+                else:
+                    det_confidence[zone].at[timestamp, obj] = float(confi)
+
+    pprint(det_confidence)
+
+    return object_frequency, zone_distribution, high_priority_objects, det_confidence
 
 
 # Step 4: Generate insights and print metrics
@@ -99,15 +121,36 @@ def visualize(stats: dict, title: str='Object distribution'):
     """
     #print(stats)
     objects = list(stats.keys())
-    print(objects)
     occurence = list(stats.values())
-    print(occurence)
     plt.bar(objects, occurence)
     plt.title(title)
     plt.xlabel('Objects')
     plt.ylabel('Occurrence')
-    plt.savefig('_'.join(title.split())+'.png')
+    plt.savefig('_'.join(title.split())+'.pdf', dpi=720)
     plt.close()
+
+
+def generate_heatmaps(confi_dict: dict, bootstrap_num: int = 10000) -> None:
+    """ Generate heatmaps with bootstrapping
+
+    Args:
+        confi_dict: dictionary with each key to be robot id and value to be Pandas DataFrame
+        bootstrap_num: how many samples to be bootstrapped
+    """
+    for zone in confi_dict.keys():
+        df = confi_dict[zone]
+        pprint(df)
+        bootstrapped_df = df.sample(
+            bootstrap_num, 
+            replace=True
+        ).reset_index(drop=True)
+        pprint(bootstrapped_df)
+        print(bootstrapped_df.dtypes)
+
+        # Heatmap
+        plt.figure(figsize=(30, 30))
+        sns.heatmap(bootstrapped_df, annot=True)
+        plt.savefig(f"heatmap_{zone}.pdf", dpi=720)
 
 
 # Main function to run the workload
@@ -131,7 +174,7 @@ def main():
 
     if response_data:
         # Step 3: Process the response data
-        object_frequency, zone_distribution, high_priority_objects = process_response(response_data)
+        object_frequency, zone_distribution, high_priority_objects, det_confidence = process_response(response_data)
 
         # Step 4: Generate insights and print the results
         generate_insights(object_frequency, zone_distribution, high_priority_objects)
@@ -139,6 +182,9 @@ def main():
         visualize(object_frequency)
         for zone, stats in zone_distribution.items():
             visualize(stats, f'Object distribution for zone: {zone}')
+
+        # Generate heatmap with bootstrapping
+        generate_heatmaps(det_confidence)
     else:
         print('No response from metadata service')
 
