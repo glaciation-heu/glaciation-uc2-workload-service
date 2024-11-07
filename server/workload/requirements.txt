@@ -4,3 +4,5 @@ opencv-python == 4.9.0.80
 PyLD == 2.0.4
 requests == 2.31.0
 matplotlib
+pandas == 2.1.4
+seaborn == 0.12.2
