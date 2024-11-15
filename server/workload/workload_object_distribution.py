@@ -44,6 +44,7 @@ def construct_sparql_query():
             ?conf saref:hasValue ?confVal .
             }
         } 
+        FILTER (STRSTARTS(STR(?g), 'https://glaciation-project.eu/uc/2'))
     } 
     """
     return sparql_query
