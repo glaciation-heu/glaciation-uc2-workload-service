@@ -8,6 +8,13 @@
 * A subset of data can be found in DELL UC [repo](https://github.com/glaciation-heu/DELL-UC/tree/main/datasets) while the full data is stored in XR12 of the validation cluster
 * The data can be sent to the semantification component of the GLACIATION platfrom from XR12.
 * Check ```~/DELL-UC/datasets$ python send_data.py --help``` for more details
+* For example:
+```python
+python send_data.py --nifi_url http://semantification.integration/contentListener --jena_url http://jena-fuseki.integration/slice -d
+```
+* ```-d``` delete existing data in DKG
+* ```--nifi_url``` NiFi endpoint for semantification pipeline, use "validation" instead of "integration" if you are working on validation cluster
+* ```--jena_url``` Jena Fuseki endpoint, use "validation" instead of "integration" if you are working on validation cluster
 
 ## Workload
 * The workload aims to analyze the object distribution of detected objects overall, across different robots (or zones), and regarding high priority objects (e.g., human)
