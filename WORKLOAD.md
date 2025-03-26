@@ -17,7 +17,7 @@ python send_data.py --nifi_url http://semantification.integration/contentListene
 * ```--jena_url``` Jena Fuseki endpoint, use *validation* instead of *integration* if you are working on validation cluster
 
 ## Workload
-* The workload aims to analyze the object distribution of detected objects overall, across different robots (or zones), and regarding high priority objects (e.g., human)
+* The workload (deployed as a pod in Kubernetes cluster) aims to analyze the object distribution of detected objects overall, across different robots (or zones), and regarding high priority objects (e.g., human)
 * To this end, it queries DKG to retrieve the ingested and semantified UC2 data, and runs a script to analyze the distributions
 * At the end, it generates a heatmap of each distribution as PDF files
 
