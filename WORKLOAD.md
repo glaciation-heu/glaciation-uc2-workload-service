@@ -19,7 +19,7 @@ python send_data.py --nifi_url http://semantification.integration/contentListene
 ## Workload
 * The workload (deployed as a pod in Kubernetes cluster) aims to analyze the object distribution of detected objects overall, across different robots (or zones), and regarding high priority objects (e.g., human)
 * To this end, it queries DKG to retrieve the ingested and semantified UC2 data, and runs a script to analyze the distributions
-* At the end, it generates a heatmap of each distribution as PDF files
+* At the end, it generates a heatmap of each distribution as PDF files (inside pod)
 
 ## Schedule
 * The workload is deployed as Kubernetes [Cronjob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/), and it is configured to run every 15 min as specified in the [cronjob YAML file](https://github.com/glaciation-heu/glaciation-uc2-workload-service/blob/main/server/charts/server/templates/cronjob.yaml)
