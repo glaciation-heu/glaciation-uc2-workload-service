@@ -3,7 +3,7 @@
 * The collected dataset has been ingested into the GLACIATION platform via the [semantification component](https://github.com/glaciation-heu/glaciation-semantification-service)
 * The workload is configured as a cronjob to run periodically in which it queries the ingested dataset from DKG via the [metadata service](https://github.com/glaciation-heu/glaciation-metadata-service)
 
-## Dataset
+## Dataset and Ingestion 
 * The dataset contains YOLO (a computer vision model) results containing detected objects run on snapshots of video stream captured by a camera attached to robots
 * A subset of data can be found in DELL UC [repo](https://github.com/glaciation-heu/DELL-UC/tree/main/datasets) while the full data is stored in XR12 of the validation cluster
 * The data can be sent to the semantification component of the GLACIATION platfrom from XR12.
