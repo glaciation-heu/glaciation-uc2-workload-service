@@ -12,7 +12,7 @@
 ```python
 python send_data.py --nifi_url http://semantification.integration/contentListener --jena_url http://jena-fuseki.integration/slice -d
 ```
-* ```-d``` delete existing data in DKG
+* ```-d``` delete existing UC2 data ONLY in DKG
 * ```--nifi_url``` NiFi endpoint for semantification pipeline, use "validation" instead of "integration" if you are working on validation cluster
 * ```--jena_url``` Jena Fuseki endpoint, use "validation" instead of "integration" if you are working on validation cluster
 
