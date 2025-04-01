@@ -5,10 +5,10 @@ metadata:
   labels:
     {{- include "app.labels" . | nindent 4 }}
   annotations:
-    glaciation-project.eu/resource/requests/energy: "{{ .Values.resources.requests.energy }}"
-    glaciation-project.eu/resource/requests/network: "{{ .Values.resources.requests.network }}"
-    glaciation-project.eu/resource/limits/energy: "{{ .Values.resources.limits.energy }}"
-    glaciation-project.eu/resource/limits/network: "{{ .Values.resources.limits.network }}"
+    "glaciation-project.eu/resource/requests/energy": "{{ .Values.resources.requests.energy }}"
+    "glaciation-project.eu/resource/requests/network": "{{ .Values.resources.requests.network }}"
+    "glaciation-project.eu/resource/limits/energy": "{{ .Values.resources.limits.energy }}"
+    "glaciation-project.eu/resource/limits/network": "{{ .Values.resources.limits.network }}"
 spec:
   schedule: "*/15 * * * *"
   jobTemplate:
