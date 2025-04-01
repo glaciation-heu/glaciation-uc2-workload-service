@@ -30,13 +30,17 @@ resources:
   requests:
     memory: "2Gi"
     cpu: "2"
-    ephemeralStorage: "500M"
+    ephemeralStorage: "1Gi"
     nvidiaGPU: "0"
+    energy: "5000000"
+    network: "10"
   limits:
     memory: "4Gi"
     cpu: "3"
-    ephemeralStorage: "1000M"
+    ephemeralStorage: "2Gi"
     nvidiaGPU: "0"
+    energy: "10000000"
+    network: "100"
 
 livenessProbe:
   httpGet:
