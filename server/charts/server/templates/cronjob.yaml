@@ -22,8 +22,12 @@ spec:
               resources:
                 requests:
                   memory: "{{ .Values.resources.requests.memory }}"
-                  cpu: "2"
-                  ephemeral-storage: "500M"
+                  cpu: "{{ .Values.resources.requests.cpu }}"
+                  ephemeral-storage: "{{ .Values.resources.requests.emphemeralStorage }}"
+                  nvidia.com/gpu: "{{ .Values.resources.requests.nvidiaGPU}}"
                 limits:
-                  nvidia.com/gpu: "0"
+                  memory: "{{ .Values.resources.limits.memory }}"
+                  cpu: "{{ .Values.resources.limits.cpu }}"
+                  ephemeral-storage: "{{ .Values.resources.limits.emphemeralStorage }}"
+                  nvidia.com/gpu: "{{ .Values.resources.limits.nvidiaGPU}}"
           restartPolicy: OnFailure
