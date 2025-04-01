@@ -23,11 +23,11 @@ spec:
                 requests:
                   memory: "{{ .Values.resources.requests.memory }}"
                   cpu: "{{ .Values.resources.requests.cpu }}"
-                  ephemeral-storage: "{{ .Values.resources.requests.emphemeralStorage }}"
+                  ephemeral-storage: "{{ .Values.resources.requests.ephemeralStorage }}"
                   nvidia.com/gpu: "{{ .Values.resources.requests.nvidiaGPU}}"
                 limits:
                   memory: "{{ .Values.resources.limits.memory }}"
                   cpu: "{{ .Values.resources.limits.cpu }}"
-                  ephemeral-storage: "{{ .Values.resources.limits.emphemeralStorage }}"
+                  ephemeral-storage: "{{ .Values.resources.limits.ephemeralStorage }}"
                   nvidia.com/gpu: "{{ .Values.resources.limits.nvidiaGPU}}"
           restartPolicy: OnFailure
