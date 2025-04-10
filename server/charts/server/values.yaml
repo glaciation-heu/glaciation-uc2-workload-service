@@ -26,20 +26,22 @@ service:
   type: ClusterIP
   port: 80
 
+# Specification: https://github.com/glaciation-heu/kg_exporter/blob/main/docs/0004-knowledge-graph-and-telemetry-specification-v4.md
+# Energy unit according to the specification: milliwatts 
 resources:
   requests:
     memory: "2Gi"
     cpu: "2"
     ephemeralStorage: "1Gi"
     nvidiaGPU: "0"
-    energy: "5M"
+    energy: "10M"
     network: "10"
   limits:
     memory: "4Gi"
     cpu: "3"
     ephemeralStorage: "2Gi"
     nvidiaGPU: "0"
-    energy: "10M"
+    energy: "20M"
     network: "100"
 
 livenessProbe:
