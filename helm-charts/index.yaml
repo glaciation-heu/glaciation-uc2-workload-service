@@ -43,6 +43,16 @@ entries:
     version: 0.0.1
   uc2-workload:
   - apiVersion: v2
+    appVersion: 0.1.33
+    created: "2025-04-10T10:02:43.993445695Z"
+    description: UC2 workload
+    digest: 5e66af0672999bf34fe16a11eaff2e693005d4e4899988aeb7fe3dbf08957225
+    name: uc2-workload
+    type: application
+    urls:
+    - https://glaciation-heu.github.io/glaciation-uc2-workload-service/helm-charts/uc2-workload-0.1.33.tgz
+    version: 0.1.33
+  - apiVersion: v2
     appVersion: 0.1.32
     created: "2025-04-10T09:14:27.522039397Z"
     description: UC2 workload
@@ -632,4 +642,4 @@ entries:
     urls:
     - https://glaciation-heu.github.io/glaciation-uc2-workload-service/helm-charts/uc2-workload-0.0.2.tgz
     version: 0.0.2
-generated: "2025-04-10T09:59:59.559608835Z"
+generated: "2025-04-10T10:02:43.992983263Z"
