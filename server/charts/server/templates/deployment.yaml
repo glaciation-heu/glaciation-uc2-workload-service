@@ -17,7 +17,10 @@ spec:
         "glaciation-project.eu/energy-capacity": "{{ .Values.resources.limits.energy }}"
         "glaciation-project.eu/network-capacity": "{{ .Values.resources.limits.network }}"
       labels:
-        {{- include "app.selectorLabels" . | nindent 6 }}
+        {{- include "app.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
