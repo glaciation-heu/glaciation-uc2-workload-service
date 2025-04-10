@@ -16,6 +16,8 @@ spec:
         "glaciation-project.eu/network-allocated": "{{ .Values.resources.requests.network }}"
         "glaciation-project.eu/energy-capacity": "{{ .Values.resources.limits.energy }}"
         "glaciation-project.eu/network-capacity": "{{ .Values.resources.limits.network }}"
+      labels:
+        {{- include "app.selectorLabels" . | nindent 6 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
