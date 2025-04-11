@@ -34,14 +34,14 @@ resources:
     cpu: "2"
     ephemeralStorage: "1Gi"
     nvidiaGPU: "0"
-    energy: "10M"
+    energy: "100"
     network: "10"
   limits:
     memory: "4Gi"
     cpu: "3"
     ephemeralStorage: "2Gi"
     nvidiaGPU: "0"
-    energy: "20M"
+    energy: "200"
     network: "100"
 
 livenessProbe:
