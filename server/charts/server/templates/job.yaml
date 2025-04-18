@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "app.labels" . | nindent 4 }}
 spec:
-  ttlSecondsAfterFinished: 60
+  ttlSecondsAfterFinished: 1800
   template:
     metadata:
       annotations:
