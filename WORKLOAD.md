@@ -22,5 +22,5 @@ python send_data.py --nifi_url http://semantification.integration/contentListene
 * At the end, it generates a heatmap of each distribution as PDF files (inside pod)
 
 ## Schedule
-* The workload is deployed as Kubernetes as specified in the [YAML file](https://github.com/glaciation-heu/glaciation-uc2-workload-service/blob/main/server/charts/server/templates/)
+* The workload is deployed as Kubernetes as specified in the [YAML file](https://github.com/glaciation-heu/glaciation-uc2-workload-service/blob/main/server/charts/server/templates/) based on values (e.g., resources required) specified in [values YAML file](https://github.com/glaciation-heu/glaciation-uc2-workload-service/blob/main/server/charts/server/values.yaml)
 * Currently each run takes less than 500 seconds (varies by different clusters)
